@@ -9,40 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // @State var time : Int = 100
-    @State var delegateVar : Int = 0 {
-        didSet{
-            print("")
-        }
-    }
     
+    //var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @ObservedObject var timePro = TimeProcessing()
-    var timer = Timer()
     
     
     var body: some View {
         
         ZStack{
             Image("bcg").resizable().edgesIgnoringSafeArea(.all).aspectRatio(contentMode: .fill)
-            //delegateVar = timePro.time
+            
             
             VStack{
                 
                 Spacer()
                 
-                TextShowed(txt: "\(timePro.time)")
-                    
+                TextShowed(txt: self.$timePro.time)
                 
                 
                 Spacer()
                 
                 HStack{
                     
-                    ButtonDesign(txt: "start", fc: {
-                    
+                    ButtonDesign(txt: "Start") {
                         self.timePro.start()
-                        self.delegateVar = self.timePro.time
-                    })
+//                        self.time = self.timePro.time this won't get updated since it's only executed when you press on the button
+                        print("button Design start finished successfully!")
+                    }
                     
                     ButtonDesign(txt: "Pause", fc: timePro.pause)
                     

@@ -28,17 +28,29 @@ struct ButtonDesign: View {
 
 struct TextShowed: View {
     
-    @State var txt : String
+    //var name: String
+    //@State var onAppear = false
+    @Binding var txt: Int
     
     var body: some View {
-        Text("\(txt)").fontWeight(.bold)
-            .font(.system(size: 50))
-            .fontWeight(.semibold)
-            .foregroundColor(Color.white)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal)
-            .frame(width: 400, height: 150, alignment: .center)
-            .background(Color.secondary)
-            .padding(.bottom)
+        VStack {
+            Text("\(txt)").fontWeight(.bold)
+                .font(.system(size: 50))
+                .fontWeight(.semibold)
+                .foregroundColor(Color.white)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+                .frame(width: 400, height: 150, alignment: .center)
+                .background(Color.secondary)
+                .padding(.bottom)
+//        Text(name)
+//            .offset(y: onAppear ? 0: 10000)
+//            .onAppear {
+//                withAnimation(Animation.easeOut(duration:2).delay(1)) {
+//                    self.onAppear.toggle()
+//
+//                }
+//            }
+        }
     }
 }
