@@ -11,55 +11,55 @@ struct ContentView: View {
     
     
     //var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @ObservedObject var timePro = TimeProcessing()
+    @ObservedObject static var timePro = TimeProcessing()
     
     
     var body: some View {
-        
-        ZStack{
-            Image("bcg").resizable().edgesIgnoringSafeArea(.all).aspectRatio(contentMode: .fill)
-            
-            
-            VStack{
-                
-                Spacer()
-                
-                TextShowed(txt: self.$timePro.time)
+        NavigationView{
+            ZStack{
+                Image("bcg").resizable().edgesIgnoringSafeArea(.all).aspectRatio(contentMode: .fill)
                 
                 
-                Spacer()
-                
-                HStack{
+                VStack{
                     
-                    ButtonDesign(txt: "Start") {
-                        self.timePro.start()
-//                        self.time = self.timePro.time this won't get updated since it's only executed when you press on the button
-                        print("button Design start finished successfully!")
+                    Spacer()
+                    
+                    //TextShowed(sec: self.$timePro.time)
+                    TextShowed(min: ContentView.$timePro.min, sec: ContentView.$timePro.sec, milleSec: ContentView.$timePro.milleSec)
+
+                    
+                    Spacer()
+                    
+                    HStack{
+                        
+                        ButtonDesign(txt: "Start" , fc: ContentView.timePro.Start)
+                        
+                        ButtonDesign(txt: "Pause", fc: ContentView.timePro.pause)
+                        
+                        ButtonDesign(txt: "Reset", fc: ContentView.timePro.reset)
                     }
+                    Divider()
                     
-                    ButtonDesign(txt: "Pause", fc: timePro.pause)
+                  
                     
-                    ButtonDesign(txt: "Reset", fc: timePro.reset)
+                    NavigationLink(destination: CountDown()) {
+                       
+                        Text("Count down")
+                            
+                            .font(.system(size: 30))
+                            .foregroundColor(Color.white)
+                            .fontWeight(.light).padding()
+                    }
+                    .frame(width: 400, height: 55, alignment: .bottom)
+                    .background(Color.black)
+                    .padding(.horizontal)
+                
+                    
                 }
-                Divider()
-                
-                
-                Button(action: timePro.action) {
-                    Text("Count down")
-                        .font(.system(size: 30))
-                        .foregroundColor(Color.white)
-                        .fontWeight(.light).padding()
-                }
-                    
-                .frame(width: 400, height: 55, alignment: .bottom)
-                .background(Color.black)
-                .padding(.horizontal)
-                
                 
             }
-            
-        }
-        
+        }.navigationBarTitle("")
+            .navigationBarHidden(true)
     }
     
 }
@@ -72,4 +72,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

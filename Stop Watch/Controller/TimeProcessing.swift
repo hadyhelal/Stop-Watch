@@ -11,19 +11,33 @@ import Foundation
 class TimeProcessing : ObservableObject {
     
     
-    var timer = Timer()
-    //var name = "mmostfa"
-    @Published var time  = 0
+    var secTimer = Timer()
+    var milleSecondTimer = Timer()
+    @Published var sec  = 0
+    @Published var milleSec = 0
+    @Published var min = 0
+    
     var isRuning = false
-    func start () {
+    
+    func Start () {
         if !isRuning {
-            print("start calculating not down")
             
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeProcessing.action), userInfo: nil, repeats: true)
-            isRuning = true
+            milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true){  _ in
+                if self.milleSec == 60 {
+                    self.milleSec = 0
+                    
+                }
+                else{
+                    self.milleSec += 1
+                }
+            }
+            
+            secTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeProcessing.action), userInfo: nil, repeats: true)
+            isRuning.toggle()
+            
         }
         else {
-            time = 0 ;
+            sec = 0 ;
         }
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
         //            self.name = "mmmmmmmmmmm"
@@ -33,30 +47,59 @@ class TimeProcessing : ObservableObject {
         
     }
     
+    func Start(_ downMin : Int , _ downSec : Int ) {
+        reset()
+        
+        
+        secTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeProcessing.CounterDownAction), userInfo: nil, repeats: true)
+        sec = downSec
+        min = downMin
+        milleSec = 99
+        milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { _ in
+            if self.milleSec == 1 {
+                self.milleSec = 60
+           
+            } else {
+                
+                self.milleSec -= 1
+            }
+        }
+    }
+    
     
     
     func pause() {
-        timer.invalidate()
+        secTimer.invalidate()
+        milleSecondTimer.invalidate()
         print("time stoped")
         isRuning = false
     }
     
     func reset () {
         pause()
-        time = 0
+        sec = 0
+        milleSec = 0
     }
     
     @objc func action () {
-        if time >= 100000 {
-            pause()
+        if sec == 59 {
+            self.min += 1
+            sec = 0
             print("time is done")
         }
         else
         {
-            time += 1
-            print("TIme in Action \(time)")
+            sec += 1
+            print("Time in Action \(sec)")
         }
-        
     }
     
+    @objc func CounterDownAction() {
+        if sec == 1  && min >= 1 {
+            min -= 1
+            sec = 60
+        }
+        sec -= 1
+        
+    }
 }
