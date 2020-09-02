@@ -37,14 +37,8 @@ class TimeProcessing : ObservableObject {
     func Start () {
         if !isRuning {
             
-            milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true){  _ in
-                if self.milleSec == 59 {
-                    self.milleSec = 0
-                    
-                }
-                else{
-                    self.milleSec += 1
-                }
+            milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true){  _ in
+                self.milleSec += 1
             }
             
             secTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeProcessing.action), userInfo: nil, repeats: true)
@@ -54,13 +48,8 @@ class TimeProcessing : ObservableObject {
         else {
             sec = 0 ;
         }
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-        //            self.name = "mmmmmmmmmmm"
-        //            print("name was changed to mmmmmm")
-        //        }
-        
-        
     }
+    
     
     //CountDown Start (polymorphism)
     func Start(_ downMin : Int , _ downSec : Int ) {
@@ -70,7 +59,7 @@ class TimeProcessing : ObservableObject {
         sec = downSec
         min = downMin
         milleSec = 59
-        milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { _ in
+        milleSecondTimer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true) { _ in
             if self.milleSec == 1 {
                 self.milleSec = 59
                 
@@ -97,6 +86,7 @@ class TimeProcessing : ObservableObject {
     }
     
     @objc func action () {
+      milleSec = 0
         if sec == 59 {
             self.min += 1
             sec = 0
@@ -110,6 +100,7 @@ class TimeProcessing : ObservableObject {
     }
     
     @objc func CounterDownAction() {
+        
         if sec == 0 && min == 0  { playMusic()}
         
         if sec == 1  && min >= 1 {
