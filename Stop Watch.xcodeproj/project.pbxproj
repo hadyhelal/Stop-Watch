@@ -16,6 +16,7 @@
 		07345A1224C642470058D5DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07345A1124C642470058D5DB /* Preview Assets.xcassets */; };
 		07345A1524C642470058D5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07345A1324C642470058D5DB /* LaunchScreen.storyboard */; };
 		074202C024CDAA9C00B4A8EF /* TimeProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074202BF24CDAA9C00B4A8EF /* TimeProcessing.swift */; };
+		075CA22224FED5C9000A6B44 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 075CA22124FED5C9000A6B44 /* 1.mp3 */; };
 		079E36DF24FED178006E164C /* SwiftLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E36DE24FED178006E164C /* SwiftLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		07345A1424C642470058D5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07345A1624C642470058D5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		074202BF24CDAA9C00B4A8EF /* TimeProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProcessing.swift; sourceTree = "<group>"; };
+		075CA22124FED5C9000A6B44 /* 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1.mp3; sourceTree = "<group>"; };
 		079E36DE24FED178006E164C /* SwiftLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				0729C19424CCB4B5003A4025 /* Views.swift */,
+				075CA22124FED5C9000A6B44 /* 1.mp3 */,
 			);
 			path = Designs;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075CA22224FED5C9000A6B44 /* 1.mp3 in Resources */,
 				07345A1524C642470058D5DB /* LaunchScreen.storyboard in Resources */,
 				07345A1224C642470058D5DB /* Preview Assets.xcassets in Resources */,
 				07345A0F24C642470058D5DB /* Assets.xcassets in Resources */,

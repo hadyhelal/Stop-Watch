@@ -13,6 +13,7 @@ struct SwiftLoader: View {
     @State var loading = true
     
     var body: some View {
+        
         ZStack {
             Color.secondary.edgesIgnoringSafeArea(.all)
             
@@ -46,17 +47,17 @@ struct LoadDesign: View {
     
     let smallBarHeight : CGFloat = 45
     let mediumBarHeight : CGFloat = 75
-    
     let isAnimating : Bool
+    
     var body: some View {
         HStack(alignment: .center, spacing: self.isAnimating ? 25 : 10) {
             Capsule(style: .continuous)
                 .fill(Color.white)
-                .frame(width: 13, height: 75)
+                .frame(width: 13, height: mediumBarHeight)
             
             Capsule(style: .continuous)
                 .fill(Color.white)
-                .frame(width: 13, height: 45)
+                .frame(width: 13, height: smallBarHeight)
             
             Capsule(style: .continuous)
                 .fill(Color.white)
@@ -64,11 +65,11 @@ struct LoadDesign: View {
             
             Capsule(style: .continuous)
                 .fill(Color.white)
-                .frame(width: 13, height: 45)
+                .frame(width: 13, height: smallBarHeight)
             
             Capsule(style: .continuous)
                 .fill(Color.white)
-                .frame(width: 13, height: 75)
+                .frame(width: 13, height: mediumBarHeight)
             
         }
         

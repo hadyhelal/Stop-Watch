@@ -7,17 +7,14 @@
 //
 
 import SwiftUI
-import AVFoundation
 struct CountDown: View {
     // let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var audio : AVAudioPlayer!
     @State var minText : String = ""
     @State var secTxt : String = ""
-    @State var selectedColor : Int = 0
-    
     @State var showAlret = false
     
     @ObservedObject var timepro = TimeProcessing()
+    
     var body: some View {
         
         ZStack{
@@ -35,7 +32,7 @@ struct CountDown: View {
                 
                 Spacer()
                 TextShowed(min: $timepro.min, sec: $timepro.sec, milleSec: $timepro.milleSec)
-                //    .padding(.horizontal)
+                    .padding(.horizontal)
                 
                 
                 
@@ -50,13 +47,13 @@ struct CountDown: View {
                 Spacer()
                 HStack{
                     ButtonDesign(txt: "Start") {
-                        
+                        //Check if the time is a real number
                         if let minNum = Int(self.minText) , let secNum = Int(self.secTxt)
                         {
-                            self.timepro.Start(minNum , secNum)
+                            self.timepro.Start(minNum , secNum - 1)
                         }
                         else if self.minText ==  "" && ((Int(self.secTxt)) != nil){
-                            self.timepro.Start(0 , Int(self.secTxt)! )
+                            self.timepro.Start(0 , Int(self.secTxt)! - 1 )
                         }
                         else if self.secTxt ==  "" && ((Int(self.minText)) != nil) {
                             self.timepro.Start((Int(self.minText)! - 1 ), 59)
@@ -71,37 +68,13 @@ struct CountDown: View {
                     }.padding()
                         .alert(isPresented: $showAlret, content: { Alert(title: Text("You have entered a wrong symbol please enter a real number!")) })
                     
-                    ButtonDesign(txt: "Stop", fc: timepro.pause)
+                    ButtonDesign(txt: "Stop", fc: timepro.reset)
                 }.padding()
             }.onAppear(){
-                ContentView.timePro.reset()
-                if self.timepro.sec == 0 {
-                }
+                //ContentView().timePro.pause()
+                
             }
         }
-    }
-    
-    
-    func playMusic () {
-        do {
-            let url = Bundle.main.url(forResource: "1", withExtension: ".mp3")
-            try audio = AVAudioPlayer(contentsOf: url!)
-        }
-        catch {
-            print(error)
-            
-        }
-        audio.play()
-        
-    }
-    
-    
-    func GetTimeDoown(name : String) -> Int {
-        if let number : Int = Int(name)
-        {
-            return number
-        }
-        return 0
     }
 }
 

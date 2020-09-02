@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//This struct holds the entire repeted UI components in the project
 struct ButtonDesign: View {
     let txt : String
     var fc : () -> Void
@@ -16,12 +17,14 @@ struct ButtonDesign: View {
         
         Button(action: fc) {
             Text(txt)
-                .font(.system(size: 35))
+                .font(.system(size: 32))
                 .fontWeight(.semibold)
                 .foregroundColor(.blue)
         }.padding(.horizontal).background(Color.secondary)
+        .cornerRadius(30)
     }
 }
+
 
 
 
@@ -44,7 +47,9 @@ struct TextShowed: View {
                     .foregroundColor(Color.white)
                     .frame(width: 400, height: 150, alignment: .center)
                     .background(Color.secondary)
-                    .padding(.bottom)
+                  //  .padding(.bottom)
+                    .cornerRadius(10)
+
                 //        Text(name)
                 //            .offset(y: onAppear ? 0: 10000)
                 //            .onAppear {
@@ -81,6 +86,7 @@ struct CustomTextField: View {
                 .frame(width: 70, height: 30, alignment: .center)
                 .background(Color.secondary)
                 .foregroundColor(Color.white)
+            .cornerRadius(5)
             
         }.padding()
     }
@@ -89,7 +95,7 @@ struct CustomTextField: View {
 
 extension Int {
     func toString() -> String {
-        if (self < 10) {
+        if (self < 10 && self >= 0) {
             return String("0\(Int(self))")
         } else {
             return String("\(Int(self))")
