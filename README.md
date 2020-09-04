@@ -3,6 +3,8 @@
 ## Timer and Count down SwiftUI application ⏳
 An end-to-end explanation of the iOS app. 
 
+I improved the syncronization of time by advanced state managment observer design pattern along side *@Binding* and SwiftUI marvelous features 🔥. 
+
 In the images below a SwiftUI loader animated view easy in and out which generate an amazing flexible animation loading view 🔄
 
 ![Image of SwiftUILoader](https://github.com/hadyhelal/Stop-Watch/blob/master/Stop%20Watch/includedPics/SwiftUI%20loader%20narrow.png) ![Image of SwiftUILoader](https://github.com/hadyhelal/Stop-Watch/blob/master/Stop%20Watch/includedPics/SwiftUI%20loader%20wide.png)
